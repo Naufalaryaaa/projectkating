@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <!-- Loading Overlay -->
     <div id="loading-overlay">
         <div class="loading-content">
             <div class="loading-spinner"></div>
@@ -20,7 +19,8 @@
         </div>
     </div>
 
-    <!-- NAVBAR -->
+    <div class="mobile-overlay"></div>
+
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo"><h2>DigiMax</h2></div>
@@ -32,7 +32,6 @@
                 <li><a href="#about">About</a></li>
             </ul>
 
-            <!-- Mobile Sidebar -->
             <div class="mobile-sidebar">
                 <div class="sidebar-header"><h2>DigiMax</h2></div>
                 <nav class="sidebar-nav">
@@ -51,11 +50,8 @@
         </div>
     </nav>
 
-    <div class="mobile-overlay"></div>
-
     <main>
 
-        <!-- HERO SECTION (clean corporate white) -->
         <section id="home" class="hero">
             <div class="hero-background"></div>
 
@@ -96,7 +92,6 @@
             </div>
         </section>
 
-        <!-- SERVICES -->
         <section id="services" class="services">
             <div class="container">
                 <div class="section-header reveal">
@@ -108,14 +103,12 @@
                     <div class="service-card reveal stagger-1">
                         <div class="service-header"><h3>Digital Marketing</h3></div>
                         <p>SEO, SEM, social media marketing, performance ads.</p>
-
                         <ul class="service-features">
                             <li>SEO Optimization</li>
                             <li>Google Ads Management</li>
                             <li>Social Media Advertising</li>
                             <li>Analytics</li>
                         </ul>
-
                         <div class="service-cta">
                             <span class="price">Starting at $2,500/month</span>
                             <button class="btn-outline">Learn More</button>
@@ -125,30 +118,27 @@
                     <div class="service-card reveal stagger-2">
                         <div class="service-header"><h3>Content Creation</h3></div>
                         <p>Creative content and visual production.</p>
-
                         <ul class="service-features">
                             <li>Video Production</li>
                             <li>Graphic Design</li>
                             <li>Copywriting</li>
                             <li>Brand Storytelling</li>
                         </ul>
-
                         <div class="service-cta">
                             <span class="price">Starting at $1,500/month</span>
                             <button class="btn-outline">Learn More</button>
                         </div>
                     </div>
+                    
                     <div class="service-card reveal stagger-3">
                         <div class="service-header"><h3>Brand Strategy</h3></div>
                         <p>Brand identity, positioning & competitive strategy.</p>
-
                         <ul class="service-features">
                             <li>Brand Identity</li>
                             <li>Market Research</li>
                             <li>Competitor Analysis</li>
                             <li>Brand Guidelines</li>
                         </ul>
-
                         <div class="service-cta">
                             <span class="price">Starting at $5,000/project</span>
                             <button class="btn-outline">Learn More</button>
@@ -158,14 +148,12 @@
                     <div class="service-card reveal stagger-4">
                         <div class="service-header"><h3>Analytics & Insights</h3></div>
                         <p>Deep data analysis & performance optimization.</p>
-
                         <ul class="service-features">
                             <li>Performance Reporting</li>
                             <li>ROI Tracking</li>
                             <li>Data Analysis</li>
                             <li>Growth Strategy</li>
                         </ul>
-
                         <div class="service-cta">
                             <span class="price">Starting at $1,000/month</span>
                             <button class="btn-outline">Learn More</button>
@@ -183,7 +171,6 @@
 
         <div class="section-separator"></div>
 
-        <!-- PORTFOLIO -->
         <section id="portfolio" class="portfolio">
             <div class="container">
                 <div class="section-header reveal">
@@ -191,7 +178,6 @@
                     <p>Lihat hasil kerja kami</p>
                 </div>
 
-                <!-- FILTER BUTTONS -->
                 <div class="portfolio-filter reveal">
                     <button class="filter-btn active" data-filter="all">Semua</button>
                     <button class="filter-btn" data-filter="social-media">Social Media</button>
@@ -200,13 +186,9 @@
                     <button class="filter-btn" data-filter="branding">Branding</button>
                 </div>
 
-                <!-- PORTFOLIO GRID -->
                 <div class="portfolio-grid">
-
                     <div class="portfolio-card instagram-style reveal stagger-1" data-category="social-media">
-                        <div class="portfolio-image">
-                            <div class="image-placeholder">📱</div>
-                        </div>
+                        <div class="portfolio-image"><div class="image-placeholder">📱</div></div>
                         <div class="portfolio-info">
                             <h3>Social Media Campaign – F&B</h3>
                             <p>Engagement naik 350% • Growth follower 45%</p>
@@ -214,9 +196,7 @@
                     </div>
 
                     <div class="portfolio-card instagram-style reveal stagger-2" data-category="website">
-                        <div class="portfolio-image">
-                            <div class="image-placeholder">💻</div>
-                        </div>
+                        <div class="portfolio-image"><div class="image-placeholder">💻</div></div>
                         <div class="portfolio-info">
                             <h3>E-commerce Website</h3>
                             <p>Conversion rate naik 280%</p>
@@ -224,9 +204,7 @@
                     </div>
 
                     <div class="portfolio-card instagram-style reveal stagger-3" data-category="ads">
-                        <div class="portfolio-image">
-                            <div class="image-placeholder">🎯</div>
-                        </div>
+                        <div class="portfolio-image"><div class="image-placeholder">🎯</div></div>
                         <div class="portfolio-info">
                             <h3>Google Ads Campaign</h3>
                             <p>ROAS 400% • Lead +120%</p>
@@ -234,74 +212,55 @@
                     </div>
 
                     <div class="portfolio-card instagram-style reveal stagger-4" data-category="branding">
-                        <div class="portfolio-image">
-                            <div class="image-placeholder">🎨</div>
-                        </div>
+                        <div class="portfolio-image"><div class="image-placeholder">🎨</div></div>
                         <div class="portfolio-info">
                             <h3>Complete Rebranding – Restaurant</h3>
                             <p>Brand awareness naik 200%</p>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="portfolio-cta reveal">
                     <h3>Ingin hasil seperti ini?</h3>
                     <button class="btn-primary">Hubungi Kami</button>
                 </div>
-
             </div>
         </section>
 
         <div class="section-separator"></div>
 
-        <!-- ABOUT SECTION -->
         <section id="about" class="about">
             <div class="container">
                 <div class="about-content">
-
                     <div class="about-text reveal-left">
                         <h2>About Us</h2>
                         <p>Kami adalah digital marketing agency yang fokus membantu brand berkembang
                            melalui strategi, konten, dan data-driven execution.</p>
-
                         <p>Dengan pengalaman bertahun-tahun, kami menggabungkan kreativitas dan data
                            untuk menghasilkan kampanye yang efektif dan berdampak.</p>
-
                         <div class="stats">
-                            <div class="stat reveal stagger-1">
-                                <h3>50+</h3><p>Projects</p>
-                            </div>
-                            <div class="stat reveal stagger-2">
-                                <h3>25+</h3><p>Clients</p>
-                            </div>
-                            <div class="stat reveal stagger-3">
-                                <h3>3+</h3><p>Years</p>
-                            </div>
+                            <div class="stat reveal stagger-1"><h3>50+</h3><p>Projects</p></div>
+                            <div class="stat reveal stagger-2"><h3>25+</h3><p>Clients</p></div>
+                            <div class="stat reveal stagger-3"><h3>3+</h3><p>Years</p></div>
                         </div>
                     </div>
-
                     <div class="about-image reveal-right">
                         <div class="placeholder-image"></div>
                     </div>
-
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 Digital Marketing Agency. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
     <script src="script.js"></script>
 
-    <!-- CHAT WIDGET (original) -->
     <style>
         #digimax-email-form {
             position: fixed;
@@ -316,7 +275,6 @@
             display: none;
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
-
         #digimax-email-form input {
             width: 100%;
             margin-bottom: 12px;
@@ -330,7 +288,6 @@
         <h4>👋 Welcome! Let's get started</h4>
         <input type="email" id="visitor-email-input" placeholder="Your email (optional)">
         <input type="text" id="visitor-name-input" placeholder="Your name (optional)">
-
         <div class="form-buttons">
             <button class="btn-start" id="start-chat-btn">Start Chat</button>
             <button class="btn-skip" id="skip-email-btn">Skip</button>
@@ -339,26 +296,21 @@
 
     <script>
         window.DIGIMAX_CHAT_URL = 'http://localhost:3000';
-
         document.addEventListener('DOMContentLoaded', () => {
             const emailForm = document.getElementById('digimax-email-form');
             const startBtn = document.getElementById('start-chat-btn');
             const skipBtn = document.getElementById('skip-email-btn');
-
             function startChat() {
                 emailForm.style.display = 'none';
                 window.dispatchEvent(new CustomEvent('digimaxStartChat'));
             }
-
             startBtn.onclick = startChat;
             skipBtn.onclick = startChat;
-
             window.addEventListener('digimaxShowEmailForm', () => {
                 emailForm.style.display = 'block';
             });
         });
     </script>
-
     <script src="http://localhost:3000/public/embed.js?v=9"></script>
 
 </body>
