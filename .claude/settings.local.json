@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:watson.la)",
+      "WebFetch(domain:www.lapa.ninja)",
+      "Bash(PORT=3001 npm start)",
+      "Bash(/dev/null)",
+      "Bash(curl:*)"
+    ],
+    "deny": []
+  }
+}
