@@ -1,327 +1,184 @@
-// App.jsx
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Menu, X, Check } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Menu, ArrowRight, ArrowUpRight } from 'lucide-react';
 import './App.css';
 
 // --- DATA ---
-const services = [
-  {
-    title: "Digital Marketing",
-    desc: "SEO, SEM, Social Media, Performance Ads.",
-    features: ["SEO Optimization", "Google Ads", "Social Media", "Analytics"]
-  },
-  {
-    title: "Content Creation",
-    desc: "Visual production and creative storytelling.",
-    features: ["Video Production", "Graphic Design", "Copywriting", "Branding"]
-  },
-  {
-    title: "Brand Strategy",
-    desc: "Identity, positioning & market analysis.",
-    features: ["Brand Identity", "Market Research", "Competitor Analysis", "Guidelines"]
-  },
-  {
-    title: "Analytics & Data",
-    desc: "Deep insights for growth optimization.",
-    features: ["Reporting", "ROI Tracking", "User Behavior", "Strategy"]
-  }
+const servicesData = [
+  { title: "Media", desc: "Connecting brands with audiences through precision targeting.", features: ["Planning", "Buying", "Programmatic"] },
+  { title: "Creative", desc: "Storytelling that builds culture and drives commerce.", features: ["Brand Identity", "Content", "Experience Design"] },
+  { title: "CXM", desc: "Data-driven customer experience management.", features: ["Analytics", "CRM", "Personalization"] }
 ];
 
-const portfolioItems = [
-  { id: 1, title: "F&B Growth", category: "social", stat: "+350% Engagement", desc: "Organic growth strategy" },
-  { id: 2, title: "Tech Corp", category: "web", stat: "400% ROAS", desc: "Performance Ads Integration" },
-  { id: 3, title: "Lifestyle", category: "branding", stat: "Rebrand 2024", desc: "Visual Identity System" },
-  { id: 4, title: "E-Commerce", category: "web", stat: "2.8% Conv. Rate", desc: "UX/UI Overhaul" },
-  { id: 5, title: "Auto Motif", category: "social", stat: "Viral Campaign", desc: "KOL Management" },
-  { id: 6, title: "Fintech", category: "branding", stat: "Market Entry", desc: "Go-to-market Strategy" }
+const workData = [
+  { id: 1, title: "Future of Mobility", category: "Automotive", img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1000" },
+  { id: 2, title: "Sustainable Living", category: "Lifestyle", img: "https://images.unsplash.com/photo-1511452885600-a3d2c9148a31?auto=format&fit=crop&q=80&w=1000" },
+  { id: 3, title: "Digital Banking", category: "Fintech", img: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=1000" },
+  { id: 4, title: "Global Rebrand", category: "Corporate", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000" }
 ];
 
 // --- COMPONENTS ---
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+const Navbar = () => (
+  <nav className="navbar">
+    <div className="logo">DIGIMAX.</div>
+    <ul className="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Capabilities</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <Menu className="mobile-menu-icon" size={24} style={{ cursor: 'pointer' }} />
+  </nav>
+);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container nav-container">
-        <div className="logo">DIGIMAX.</div>
-        
-        <ul className="nav-links">
-          <li><a href="#home">Work</a></li>
-          <li><a href="#services">Expertise</a></li>
-          <li><a href="#about">Agency</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-
-        <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </div>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="mobile-menu"
-            style={{
-              position: 'fixed', top: '80px', left: 0, width: '100%', 
-              background: 'white', borderBottom: '1px solid black', padding: '20px'
-            }}
-          >
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <li><a href="#home" onClick={() => setIsOpen(false)}>Work</a></li>
-              <li><a href="#services" onClick={() => setIsOpen(false)}>Expertise</a></li>
-              <li><a href="#about" onClick={() => setIsOpen(false)}>Agency</a></li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
-};
-
-const AnimatedCounter = ({ target, suffix = "" }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [target]);
-
-  return <span>{count}{suffix}</span>;
-};
-
-const Hero = () => {
-  return (
-    <section id="home" className="hero">
-      <div className="container">
-        <div className="hero-content">
-          <motion.h1
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            WE ACCELERATE <br/>
-            DIGITAL GROWTH.
-          </motion.h1>
-          
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="hero-buttons"
-            style={{ display: 'flex', gap: '20px' }}
-          >
-            <a href="#contact" className="btn btn-primary">Start Project</a>
-            <a href="#work" className="btn btn-secondary">View Case Studies</a>
-          </motion.div>
-
-          <div className="hero-stats">
-            <div className="stat-item">
-              <span className="stat-number"><AnimatedCounter target={50} suffix="+" /></span>
-              <span className="stat-label">Projects</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number"><AnimatedCounter target={98} suffix="%" /></span>
-              <span className="stat-label">Success Rate</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">24/7</span>
-              <span className="stat-label">Support</span>
-            </div>
-          </div>
-        </div>
-      </div>
+const Hero = () => (
+  <>
+    <section className="hero-intro">
+      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+        <h1>We are Digimax</h1>
+        <p>The integrated growth and transformation partner. We push the boundaries of business transformation for brands, people, and society.</p>
+      </motion.div>
     </section>
-  );
-};
 
-const Services = () => {
-  return (
-    <section id="services" className="section-padding">
-      <div className="container">
-        <h2 style={{ marginBottom: '60px', fontSize: '48px' }}>Our Expertise</h2>
-        <div className="services-grid">
-          {services.map((service, index) => (
-            <motion.div 
-              key={index} 
-              className="service-card"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <h3>{service.title}</h3>
-              <p style={{ marginBottom: '20px', color: '#666' }}>{service.desc}</p>
-              <ul className="service-features">
-                {service.features.map((f, i) => (
-                  <li key={i}>{f}</li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+    <section className="split-section">
+      <div className="split-visual">
+        <motion.img 
+          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop" 
+          alt="Visual" 
+          initial={{ scale: 1.1 }} 
+          animate={{ scale: 1 }} 
+          transition={{ duration: 1.5 }}
+        />
+        <div className="visual-overlay">
+          <h2>Innovating to Impact</h2>
         </div>
       </div>
-    </section>
-  );
-};
-
-const Portfolio = () => {
-  const [filter, setFilter] = useState('all');
-  
-  const filteredItems = filter === 'all' 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === filter);
-
-  return (
-    <section id="work" className="section-padding" style={{ background: '#fcfcfc' }}>
-      <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '48px' }}>Selected Work</h2>
-          <div className="portfolio-filter">
-            {['all', 'social', 'web', 'branding'].map(cat => (
-              <button 
-                key={cat}
-                className={`filter-btn ${filter === cat ? 'active' : ''}`}
-                onClick={() => setFilter(cat)}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <motion.div layout className="portfolio-grid">
-          <AnimatePresence>
-            {filteredItems.map((item) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                key={item.id}
-                className="portfolio-card"
-              >
-                <div style={{ marginBottom: 'auto' }}>
-                  <p style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '10px', color: '#888' }}>
-                    {item.category}
-                  </p>
-                  <h3>{item.title}</h3>
-                </div>
-                <div>
-                  <div style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '10px' }}>{item.stat}</div>
-                  <p>{item.desc}</p>
-                </div>
-                <div style={{ position: 'absolute', bottom: '40px', right: '40px' }}>
-                   <ArrowRight />
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+      <div className="split-content">
+        <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+          <h3>Our Promise:<br/>Innovation for Good</h3>
+          <p>We combine deep consumer insight with cutting-edge technology to create meaningful experiences.</p>
+          <a href="#about" className="btn-white">Find out more <ArrowRight size={16} /></a>
         </motion.div>
       </div>
     </section>
-  );
-};
+  </>
+);
 
-const About = () => {
-  return (
-    <section id="about" className="section-padding" style={{ background: '#111', color: '#fff' }}>
-      <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
-          <div>
-            <h2 style={{ color: '#fff', fontSize: '60px', marginBottom: '40px' }}>AGENCY<br/>DNA.</h2>
+const Services = () => (
+  <section id="services" className="section-padding bg-gray">
+    <div className="container">
+      <h2 className="text-center">Our Capabilities</h2>
+      <div className="services-grid">
+        {servicesData.map((s, i) => (
+          <div key={i} className="service-card">
+            <h3>{s.title}</h3>
+            <p style={{marginBottom: '20px'}}>{s.desc}</p>
+            <ul className="service-features">
+              {s.features.map((f, idx) => <li key={idx}>{f}</li>)}
+            </ul>
           </div>
-          <div style={{ borderLeft: '1px solid #333', paddingLeft: '40px' }}>
-            <p style={{ fontSize: '24px', lineHeight: '1.4', marginBottom: '30px' }}>
-              We are a digital marketing agency focused on helping brands grow through 
-              strategy, content, and data-driven execution.
-            </p>
-            <p style={{ color: '#888' }}>
-              Combining creativity and data to produce effective and impactful campaigns.
-              Based in Indonesia, working globally.
-            </p>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const Portfolio = () => (
+  <section id="work" className="section-padding">
+    <div className="container">
+      <div className="portfolio-header">
+        <h2>Selected Work</h2>
+        <a href="#" className="btn-link">View All Projects <ArrowRight size={16} /></a>
+      </div>
+      <div className="work-grid">
+        {workData.map((item) => (
+          <div key={item.id} className="work-card">
+            <div className="work-image">
+              <img src={item.img} alt={item.title} />
+            </div>
+            <span className="work-cat">{item.category}</span>
+            <h3 className="work-title">{item.title}</h3>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const AboutStats = () => (
+  <section id="about" className="about-strip">
+    <div className="container about-grid">
+      <div>
+        <h2 style={{color: '#fff', marginBottom: '20px'}}>Global Scale,<br/>Local Soul.</h2>
+        <p style={{color: '#aaa', fontSize: '18px'}}>
+          With offices in 25 countries, we bring a global perspective to local challenges.
+          Our team of experts is dedicated to driving growth.
+        </p>
+      </div>
+      <div style={{display:'flex', gap: '60px'}}>
+        <div>
+          <span className="stat-number">50+</span>
+          <span className="stat-label">Offices</span>
+        </div>
+        <div>
+          <span className="stat-number">12k</span>
+          <span className="stat-label">Experts</span>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
-const Footer = () => {
-  return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-content">
-          <div>
-            <h2>DIGIMAX.</h2>
-            <p style={{ color: '#888', marginTop: '10px' }}>Jakarta, Indonesia</p>
-          </div>
-          <div style={{ textAlign: 'right' }}>
-            <p>&copy; 2024 Digital Marketing Agency.</p>
-          </div>
+const Footer = () => (
+  <footer id="contact" className="footer">
+    <div className="footer-top">
+      <div>
+        <h2>DIGIMAX.</h2>
+        <p style={{color: '#666', maxWidth: '300px'}}>
+          Part of Digimax Group Inc.<br/>
+          Innovating for a better future.
+        </p>
+      </div>
+      
+      <div style={{display:'flex', gap:'80px', flexWrap:'wrap'}}>
+        <div>
+          <h4 style={{color:'#fff', marginBottom:'20px'}}>Company</h4>
+          <ul className="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Leadership</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Investors</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style={{color:'#fff', marginBottom:'20px'}}>Connect</h4>
+          <ul className="footer-links">
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
         </div>
       </div>
-    </footer>
-  );
-};
+    </div>
+    
+    <div className="footer-bottom">
+      <span>&copy; 2024 Digimax Group. All Rights Reserved.</span>
+      <span>Privacy Policy &nbsp; | &nbsp; Terms of Use</span>
+    </div>
+  </footer>
+);
 
 // --- MAIN APP ---
-
 function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading
-    setTimeout(() => setLoading(false), 1500);
-  }, []);
-
-  if (loading) {
-    return (
-      <div style={{ 
-        height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', 
-        background: '#fff', flexDirection: 'column' 
-      }}>
-        <div style={{ 
-          width: '50px', height: '50px', border: '5px solid #000', 
-          borderTopColor: 'transparent', borderRadius: '50%', 
-          animation: 'spin 1s linear infinite' 
-        }}></div>
-        <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
-      </div>
-    );
-  }
-
   return (
     <div className="App">
       <Navbar />
       <Hero />
       <Services />
       <Portfolio />
-      <About />
+      <AboutStats />
       <Footer />
     </div>
   );
